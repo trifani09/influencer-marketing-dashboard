@@ -1,0 +1,11 @@
+{
+  "name": "influencer-marketing-dashboard-api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --env-file-if-exists=../frontend/.env --env-file-if-exists=.env index.js",
+    "dev:api": "node --env-file-if-exists=../frontend/.env --env-file-if-exists=.env index.js",
+    "start": "node index.js",
+    "test": "node --test"
+  }
+}

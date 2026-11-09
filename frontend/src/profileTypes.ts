@@ -1,0 +1,31 @@
+export type SocialPlatform = "TikTok" | "Instagram";
+export type RecentContent = {
+  id: string | null;
+  url: string | null;
+  caption: string | null;
+  publishedAt: string | null;
+  mediaType: string | null;
+  views: number | null;
+  likes: number | null;
+  comments: number | null;
+  shares: number | null;
+};
+export type ImportedProfile = {
+  platform: SocialPlatform;
+  username: string;
+  displayName: string | null;
+  profileUrl: string;
+  profilePictureUrl: string | null;
+  bio: string | null;
+  followerCount: number | null;
+  followingCount: number | null;
+  contentCount: number | null;
+  recentContent: RecentContent[];
+  engagementRate: number | null;
+  lastRefreshedAt: string;
+  dataSource: string;
+  retrievalStatus: "success" | "partial";
+  providerCreatorId: string | null;
+  provenance: Record<string, string | null>;
+  providerWarning?: string | null;
+};
