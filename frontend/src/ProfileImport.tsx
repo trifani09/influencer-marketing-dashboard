@@ -22,6 +22,7 @@ const API_BASE = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
 type Props = {
   onClose: () => void;
   onSave: (profile: ImportedProfile) => void;
+  onAnalyze?: (profile: ImportedProfile) => void;
   onManual?: () => void;
   initialUrl?: string;
   refresh?: boolean;
@@ -65,6 +66,7 @@ const display = (value: string | number | null | undefined) =>
 export default function ProfileImport({
   onClose,
   onSave,
+  onAnalyze,
   onManual,
   initialUrl = "",
   refresh = false,
@@ -396,13 +398,24 @@ export default function ProfileImport({
             Cancel
           </button>
           {preview && (
-            <button
-              className="button button-dark"
-              onClick={() => onSave(preview)}
-            >
-              <Plus size={15} />
-              {refresh ? "Update profile data" : "Save to influencer database"}
-            </button>
+            <>
+              {onAnalyze && (
+                <button
+                  type="button"
+                  className="button button-outline"
+                  onClick={() => onAnalyze(preview)}
+                >
+                  Use for calculation
+                </button>
+              )}
+              <button
+                className="button button-dark"
+                onClick={() => onSave(preview)}
+              >
+                <Plus size={15} />
+                {refresh ? "Update profile data" : "Save to influencer database"}
+              </button>
+            </>
           )}
         </footer>
       </section>

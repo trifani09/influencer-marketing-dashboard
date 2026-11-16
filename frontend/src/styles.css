@@ -77,7 +77,7 @@ select:focus-visible {
 }
 .workspace-label,
 .nav-title {
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 1.2px;
   color: #a3a39a;
   font-weight: 700;
@@ -117,12 +117,12 @@ select:focus-visible {
 }
 .workspace b,
 .profile-switch b {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
 }
 .workspace small,
 .profile-switch small {
-  font-size: 12px;
+  font-size: 14px;
   color: #999890;
 }
 .muted {
@@ -166,7 +166,7 @@ select:focus-visible {
   border-radius: 20px;
   background: #f2eade;
   color: #987756;
-  font-size: 12px;
+  font-size: 14px;
 }
 .tools-label {
   margin-top: 27px;
@@ -192,10 +192,10 @@ select:focus-visible {
   margin-bottom: 9px;
 }
 .plan-card > b {
-  font-size: 13px;
+  font-size: 14px;
 }
 .plan-card p {
-  font-size: 12px;
+  font-size: 14px;
   color: #85857d;
   line-height: 1.5;
   margin: 5px 0 9px;
@@ -220,7 +220,7 @@ select:focus-visible {
   align-items: center;
   gap: 5px;
   color: #667c6d;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
 }
 .profile-switch {
@@ -239,7 +239,7 @@ select:focus-visible {
   height: 31px;
   background: #e9d8c9;
   color: #886850;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
 }
 .main {
@@ -263,7 +263,7 @@ select:focus-visible {
 .breadcrumbs {
   gap: 9px;
   color: #92938b;
-  font-size: 13px;
+  font-size: 14px;
 }
 .breadcrumbs b {
   color: #393b37;
@@ -283,7 +283,7 @@ select:focus-visible {
   align-items: center;
   gap: 8px;
   color: #77796f;
-  font-size: 12px;
+  font-size: 14px;
 }
 .icon-button {
   display: inline-grid;
@@ -325,7 +325,7 @@ select:focus-visible {
   margin: 0 0 22px;
 }
 .eyebrow {
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 1.15px;
   font-weight: 700;
   color: #909188;
@@ -369,7 +369,7 @@ h1 {
   gap: 7px;
   height: 34px;
   padding: 0 12px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   transition:
     transform 0.15s,
@@ -415,7 +415,7 @@ h1 {
   align-items: center;
   justify-content: space-between;
   color: #7e7f77;
-  font-size: 12px;
+  font-size: 14px;
 }
 .metric-icon {
   width: 29px;
@@ -452,13 +452,13 @@ h1 {
   gap: 6px;
   align-items: center;
   color: #a1a198;
-  font-size: 10px;
+  font-size: 14px;
 }
 .positive {
   color: #65816f;
   display: inline-flex;
   align-items: center;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
 }
 .dashboard-grid {
@@ -493,7 +493,7 @@ h1 {
 .settings-panel > p,
 .view-calc p {
   color: #9a9a92;
-  font-size: 12px;
+  font-size: 14px;
   margin: 0;
 }
 .chart-legend {
@@ -525,7 +525,7 @@ h1 {
 }
 .select-button {
   height: 29px;
-  font-size: 10px;
+  font-size: 14px;
 }
 .platform-list {
   display: grid;
@@ -558,13 +558,13 @@ h1 {
 }
 .platform-name {
   width: 76px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 .platform-name small {
   display: block;
   color: #a3a39c;
-  font-size: 10px;
+  font-size: 14px;
   margin-top: 3px;
   font-weight: 400;
 }
@@ -581,7 +581,7 @@ h1 {
   border-radius: 8px;
 }
 .platform-row > b {
-  font-size: 12px;
+  font-size: 14px;
   min-width: 32px;
   text-align: right;
 }
@@ -606,10 +606,10 @@ h1 {
   display: block;
 }
 .mini-note b {
-  font-size: 10px;
+  font-size: 14px;
 }
 .mini-note small {
-  font-size: 10px;
+  font-size: 14px;
   color: #96968e;
   margin-top: 3px;
 }
@@ -633,7 +633,7 @@ h1 {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
 }
 .campaign-list {
@@ -670,10 +670,10 @@ h1 {
   display: block;
 }
 .campaign-info b {
-  font-size: 12px;
+  font-size: 14px;
 }
 .campaign-info small {
-  font-size: 10px;
+  font-size: 14px;
   color: #999990;
   margin-top: 4px;
 }
@@ -686,7 +686,7 @@ h1 {
 .campaign-progress > div:first-child {
   display: flex;
   justify-content: space-between;
-  font-size: 10px;
+  font-size: 14px;
   margin-bottom: 5px;
 }
 .campaign-progress small {
@@ -695,7 +695,7 @@ h1 {
 .status {
   border-radius: 20px;
   padding: 4px 8px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   white-space: nowrap;
 }
@@ -758,10 +758,10 @@ h1 {
   text-overflow: ellipsis;
 }
 .spotlight-name b {
-  font-size: 12px;
+  font-size: 14px;
 }
 .spotlight-name small {
-  font-size: 10px;
+  font-size: 14px;
   color: #999990;
   margin-top: 3px;
 }
@@ -773,11 +773,11 @@ h1 {
   display: block;
 }
 .spotlight-score b {
-  font-size: 12px;
+  font-size: 14px;
   color: #69806f;
 }
 .spotlight-score small {
-  font-size: 10px;
+  font-size: 14px;
   color: #a3a39a;
   margin-top: 3px;
 }
@@ -786,7 +786,7 @@ h1 {
   align-items: center;
   gap: 9px;
   color: #9b9b92;
-  font-size: 10px;
+  font-size: 14px;
   padding: 2px 1px 20px;
 }
 .sample-note > span {
@@ -806,7 +806,7 @@ h1 {
   align-items: center;
   justify-content: space-between;
   color: #aaa99f;
-  font-size: 10px;
+  font-size: 14px;
 }
 .footer-spark {
   color: #bb9878;
@@ -828,7 +828,7 @@ h1 {
 }
 .discovery-callout > span {
   flex: 1;
-  font-size: 12px;
+  font-size: 14px;
 }
 .discovery-callout b {
   color: #40473f;
@@ -838,7 +838,7 @@ h1 {
   border: 0;
   background: none;
   color: #657c6b;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -871,13 +871,13 @@ h1 {
   outline: none;
   flex: 1;
   min-width: 60px;
-  font-size: 12px;
+  font-size: 14px;
 }
 .search-box input::placeholder {
   color: #a7a69e;
 }
 .search-box kbd {
-  font-size: 10px;
+  font-size: 14px;
   background: #f3f2ee;
   padding: 3px 5px;
   border-radius: 4px;
@@ -891,7 +891,7 @@ h1 {
   border-radius: 7px;
   padding: 0 9px;
   color: #777970;
-  font-size: 12px;
+  font-size: 14px;
 }
 .directory-toolbar .button {
   height: 33px;
@@ -914,7 +914,7 @@ th {
   background: #fbfbf9;
   color: #9b9b92;
   letter-spacing: 0.6px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   white-space: nowrap;
 }
@@ -934,7 +934,7 @@ td {
   height: 57px;
   border-top: 1px solid #f1f0ed;
   color: #5f605a;
-  font-size: 10px;
+  font-size: 14px;
   white-space: nowrap;
 }
 td input,
@@ -956,11 +956,11 @@ th input {
   gap: 3px;
 }
 .creator-cell b {
-  font-size: 10px;
+  font-size: 14px;
   color: #363833;
 }
 .creator-cell small {
-  font-size: 10px;
+  font-size: 14px;
   color: #a0a097;
 }
 .platform-cell {
@@ -973,7 +973,7 @@ th input {
   background: #eff3ed;
   border-radius: 12px;
   padding: 4px 7px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
 }
 .table-footer {
@@ -984,7 +984,7 @@ th input {
   align-items: center;
   justify-content: space-between;
   color: #97978f;
-  font-size: 10px;
+  font-size: 14px;
 }
 .table-footer b {
   color: #53554f;
@@ -1007,20 +1007,20 @@ th input {
   background: #f0f3ee;
   color: #637869;
   border-radius: 5px;
-  font-size: 10px;
+  font-size: 14px;
 }
 .sample-tag {
   background: #f3f2ee;
   border-radius: 4px;
   padding: 3px 5px;
   margin-left: 7px;
-  font-size: 10px;
+  font-size: 14px;
 }
 .empty-state {
   text-align: center;
   padding: 35px;
   color: #999;
-  font-size: 13px;
+  font-size: 14px;
 }
 .campaign-summary {
   display: grid;
@@ -1039,7 +1039,7 @@ th input {
   display: block;
 }
 .campaign-summary span {
-  font-size: 10px;
+  font-size: 14px;
   color: #99998f;
 }
 .campaign-summary b {
@@ -1064,7 +1064,7 @@ th input {
   margin-left: auto;
 }
 .campaign-card > .eyebrow {
-  font-size: 10px;
+  font-size: 14px;
 }
 .campaign-card h2 {
   font: 700 18px Manrope;
@@ -1072,7 +1072,7 @@ th input {
   margin: 5px 0;
 }
 .campaign-card > p {
-  font-size: 12px;
+  font-size: 14px;
   color: #99998e;
   margin-bottom: 14px;
 }
@@ -1083,7 +1083,7 @@ th input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 10px;
+  font-size: 14px;
   margin: 12px 0 8px;
 }
 .campaign-card-meta:first-of-type {
@@ -1096,7 +1096,7 @@ th input {
   align-items: center;
 }
 .campaign-card-meta b {
-  font-size: 13px;
+  font-size: 14px;
 }
 .campaign-card-meta.muted {
   color: #99998f;
@@ -1116,7 +1116,7 @@ th input {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
 }
 .campaign-detail:hover {
@@ -1144,7 +1144,7 @@ th input {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  font-size: 12px;
+  font-size: 14px;
   color: #777970;
   font-weight: 600;
 }
@@ -1159,7 +1159,7 @@ th input {
   border-radius: 6px;
   background: #fff;
   color: #333;
-  font-size: 13px;
+  font-size: 14px;
 }
 .check-row {
   display: flex;
@@ -1167,7 +1167,7 @@ th input {
   gap: 7px;
   margin: 15px 0;
   color: #676a63;
-  font-size: 12px;
+  font-size: 14px;
 }
 .check-row input {
   accent-color: #82998a;
@@ -1180,7 +1180,7 @@ th input {
 .formula-box b,
 .formula-box span {
   display: block;
-  font-size: 10px;
+  font-size: 14px;
 }
 .formula-box b {
   color: #5e6f62;
@@ -1207,7 +1207,7 @@ th input {
   margin-left: 3px;
 }
 .result-panel > p {
-  font-size: 12px;
+  font-size: 14px;
   color: #83867c;
   line-height: 1.5;
 }
@@ -1220,7 +1220,7 @@ th input {
   display: flex;
   justify-content: space-between;
   padding: 7px 0;
-  font-size: 12px;
+  font-size: 14px;
   color: #808279;
 }
 .result-detail b {
@@ -1241,7 +1241,7 @@ th input {
   color: #667d6d;
 }
 .view-calc > span {
-  font-size: 10px;
+  font-size: 14px;
   color: #a2a197;
   margin-top: 6px;
 }
@@ -1261,13 +1261,13 @@ th input {
   gap: 8px 10px;
   padding: 11px 0;
   border-top: 1px solid #f0efeb;
-  font-size: 10px;
+  font-size: 14px;
 }
 .budget-row b {
-  font-size: 10px;
+  font-size: 14px;
 }
 .budget-row b small {
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 400;
   color: #999;
 }
@@ -1306,7 +1306,7 @@ th input {
   align-items: center;
   justify-content: space-between;
   color: #999;
-  font-size: 10px;
+  font-size: 14px;
 }
 .modal-backdrop {
   position: fixed;
@@ -1379,7 +1379,7 @@ th input {
   font-size: 22px;
 }
 .profile-hero p {
-  font-size: 12px;
+  font-size: 14px;
   color: #92938a;
   margin: 5px 0 0;
 }
@@ -1405,7 +1405,7 @@ th input {
   display: block;
 }
 .profile-stats span {
-  font-size: 10px;
+  font-size: 14px;
   color: #92938a;
 }
 .profile-stats b {
@@ -1417,7 +1417,7 @@ th input {
   grid-template-columns: 1fr 1.5fr;
   gap: 12px;
   padding: 18px 3px;
-  font-size: 12px;
+  font-size: 14px;
 }
 .profile-info span {
   color: #92938a;
@@ -1426,7 +1426,7 @@ th input {
   font-weight: 600;
 }
 .profile-info small {
-  font-size: 10px;
+  font-size: 14px;
   color: #999;
 }
 .toast {
@@ -1443,7 +1443,7 @@ th input {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
   animation: riseIn 0.2s;
 }
 .toast svg {
@@ -1575,14 +1575,14 @@ th input {
     font-size: 24px;
   }
   .welcome-row p {
-    font-size: 12px;
+    font-size: 14px;
     max-width: 270px;
     line-height: 1.5;
   }
   .welcome-row > .button {
     flex: 0 0 auto;
     padding: 0 9px;
-    font-size: 10px;
+    font-size: 14px;
     margin-top: 16px;
   }
   .metric-grid {
@@ -1622,7 +1622,7 @@ th input {
     min-width: 0;
   }
   .campaign-row > .status {
-    font-size: 10px;
+    font-size: 14px;
     padding: 4px 6px;
   }
   .row-more {
@@ -1693,7 +1693,7 @@ th input {
     height: 165px;
   }
   .footer {
-    font-size: 10px;
+    font-size: 14px;
   }
   .sample-note {
     align-items: flex-start;
@@ -1756,7 +1756,7 @@ th input {
 }
 .auth-eyebrow {
   color: #72ddce;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 1.5px;
 }
@@ -1909,7 +1909,7 @@ th input {
 }
 .auth-notice code {
   color: #263b83;
-  font-size: 12px;
+  font-size: 14px;
 }
 .auth-loading {
   display: grid;

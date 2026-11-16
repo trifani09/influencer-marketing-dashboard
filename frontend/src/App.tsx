@@ -20,6 +20,7 @@ import {
   Heart,
   Instagram,
   LayoutDashboard,
+  LogOut,
   Menu,
   MessageCircle,
   Plus,
@@ -29,6 +30,7 @@ import {
   Sparkles,
   Target,
   Users,
+  UserRound,
   Video,
   Wallet,
   X,
@@ -352,9 +354,12 @@ function App() {
     [modal, setModal] = useState(""),
     [selected, setSelected] = useState<Influencer | null>(null),
     [mobileOpen, setMobileOpen] = useState(false),
+    [accountMenuOpen, setAccountMenuOpen] = useState(false),
+    [accountProfileOpen, setAccountProfileOpen] = useState(false),
     [notice, setNotice] = useState(""),
     [analysisQuery, setAnalysisQuery] = useState(""),
-    [analysisPerson, setAnalysisPerson] = useState<Influencer | null>(null),
+    [analysisProfile, setAnalysisProfile] = useState<ImportedProfile | null>(null),
+    [analyzeOnly, setAnalyzeOnly] = useState(false),
     [refreshTarget, setRefreshTarget] = useState<number | null>(null),
     [refreshUrl, setRefreshUrl] = useState("");
   const [calc, setCalc] = useState({
@@ -394,6 +399,20 @@ function App() {
   function toast(text: string) {
     setNotice(text);
     window.setTimeout(() => setNotice(""), 2600);
+  }
+  async function analyzeExternalProfile(
+    event: React.FormEvent<HTMLFormElement>,
+  ) {
+    event.preventDefault();
+    const url = analysisQuery.trim();
+    setAnalysisProfile(null);
+    if (!/^https:\/\//i.test(url)) {
+      toast("Masukkan link profil TikTok atau Instagram yang lengkap.");
+      return;
+    }
+    setRefreshUrl(url);
+    setAnalyzeOnly(true);
+    setPage("Import");
   }
   function exportCsv() {
     const rows = [
@@ -522,6 +541,7 @@ function App() {
     setModal("");
     setRefreshTarget(null);
     setRefreshUrl("");
+    setAnalyzeOnly(false);
     setPage("Influencers");
     toast(
       old
@@ -717,18 +737,49 @@ function App() {
               <Bell size={18} />
               <i />
             </button>
-            <button
-              className="noor-user"
-              onClick={() => void signOut()}
-              title="Keluar"
+            <div
+              className="account-menu-wrap"
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget as Node))
+                  setAccountMenuOpen(false);
+              }}
             >
-              <div className="top-avatar">NA</div>
-              <span>
-                <b>{user.email?.split("@")[0] || "Account"}</b>
-                <small>{user.email}</small>
-              </span>
-              <ChevronDown size={13} />
-            </button>
+              <button
+                className="noor-user"
+                aria-haspopup="menu"
+                aria-expanded={accountMenuOpen}
+                onClick={() => setAccountMenuOpen((open) => !open)}
+                title="Menu akun"
+              >
+                <div className="top-avatar">
+                  {user.email?.slice(0, 1).toUpperCase() || "A"}
+                </div>
+                <span>
+                  <b>{user.email?.split("@")[0] || "Account"}</b>
+                  <small>{user.email}</small>
+                </span>
+                <ChevronDown size={13} />
+              </button>
+              {accountMenuOpen && (
+                <div className="account-menu" role="menu">
+                  <button
+                    role="menuitem"
+                    onClick={() => {
+                      setAccountMenuOpen(false);
+                      setAccountProfileOpen(true);
+                    }}
+                  >
+                    <UserRound size={16} /> My Profile
+                  </button>
+                  <button
+                    role="menuitem"
+                    onClick={() => void signOut()}
+                  >
+                    <LogOut size={16} /> Sign Out
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </header>
         <nav className="feature-nav">
@@ -1413,106 +1464,93 @@ function App() {
                   <span className="fb-mark">f</span>
                 </div>
                 <p>
-                  Enter one or multiple usernames or profile links to get
-                  real-time insights
+                  Masukkan link profil TikTok atau Instagram untuk menghitung
+                  engagement dari data yang tersedia.
                 </p>
-                <form
-                  className="noor-search"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    const match = people.find(
-                      (p) =>
-                        p.handle.toLowerCase() ===
-                          analysisQuery.toLowerCase() ||
-                        p.name.toLowerCase() === analysisQuery.toLowerCase() ||
-                        p.handle
-                          .toLowerCase()
-                          .includes(
-                            analysisQuery.replace("@", "").toLowerCase(),
-                          ),
-                    );
-                    if (match) {
-                      setAnalysisPerson(match);
-                      toast("Showing a matching sample profile");
-                    } else
-                      toast(
-                        "Profile not in sample data. Use manual metrics below.",
-                      );
-                  }}
-                >
+                <form className="noor-search" onSubmit={analyzeExternalProfile}>
                   <Search size={15} />
                   <input
                     value={analysisQuery}
-                    onChange={(e) => setAnalysisQuery(e.target.value)}
-                    placeholder="Enter one or multiple usernames or profile links to get real-time insights"
+                    onChange={(e) => {
+                      setAnalysisQuery(e.target.value);
+                    }}
+                    placeholder="https://www.instagram.com/username/"
                   />
                   <button type="submit">ANALYZE</button>
                 </form>
               </section>
-              {analysisPerson && (
+              {analysisProfile && (
                 <section className="panel noor-result">
                   <div className="noor-profile">
-                    <Avatar p={analysisPerson} size={56} />
+                    <div className="noor-profile-avatar">
+                      {analysisProfile.profilePictureUrl ? (
+                        <img src={analysisProfile.profilePictureUrl} alt="" />
+                      ) : (
+                        (analysisProfile.displayName || analysisProfile.username)
+                          .slice(0, 1)
+                          .toUpperCase()
+                      )}
+                    </div>
                     <div>
-                      <b>{analysisPerson.name}</b>
+                      <b>
+                        {analysisProfile.displayName || analysisProfile.username}
+                      </b>
                       <span>
-                        {analysisPerson.handle} · {analysisPerson.platform} ·
-                        SAMPLE DATA
+                        @{analysisProfile.username} · {analysisProfile.platform} ·{" "}
+                        {analysisProfile.dataSource}
                       </span>
                     </div>
                     <button
                       className="button button-outline"
-                      onClick={() => {
-                        setAnalysisPerson(null);
-                        setSelected(analysisPerson);
-                      }}
+                      onClick={() => saveImportedProfile(analysisProfile)}
                     >
-                      View profile <ArrowRight size={14} />
+                      Save to influencers <ArrowRight size={14} />
                     </button>
                   </div>
                   <div className="noor-result-stats">
                     <div>
                       <span>Avg. Engagement Rate</span>
-                      <b>{analysisPerson.engagement}%</b>
+                      <b>
+                        {analysisProfile.engagementRate === null
+                          ? "Unavailable"
+                          : `${analysisProfile.engagementRate}%`}
+                      </b>
                     </div>
                     <div>
                       <span>Avg. Engagements</span>
                       <b>
-                        {Math.round(
-                          (analysisPerson.followers *
-                            analysisPerson.engagement) /
-                            100,
-                        ).toLocaleString()}
+                        {analysisProfile.engagementRate === null ||
+                        analysisProfile.followerCount === null
+                          ? "Unavailable"
+                          : Math.round(
+                              (analysisProfile.followerCount *
+                                analysisProfile.engagementRate) /
+                                100,
+                            ).toLocaleString()}
                       </b>
                     </div>
                     <div>
                       <span>Avg. Views</span>
-                      <b>{analysisPerson.views.toLocaleString()}</b>
+                      <b>
+                        {displayMetric(
+                          viewsMetric({
+                            externalProfile: analysisProfile,
+                          } as Influencer),
+                          (value) => value.toLocaleString(),
+                        )}
+                      </b>
                     </div>
                   </div>
-                  <div className="chart noor-result-chart">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <AreaChart
-                        data={trends.slice(0, 10)}
-                        margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
-                      >
-                        <CartesianGrid stroke="#48222f" />
-                        <XAxis
-                          dataKey="month"
-                          axisLine={false}
-                          tickLine={false}
-                        />
-                        <YAxis axisLine={false} tickLine={false} />
-                        <Tooltip />
-                        <Area
-                          type="monotone"
-                          dataKey="reach"
-                          stroke="#f1768d"
-                          fill="#f1768d22"
-                        />
-                      </AreaChart>
-                    </ResponsiveContainer>
-                  </div>
+                  {analysisProfile.providerWarning && (
+                    <p className="profile-analysis-warning">
+                      {analysisProfile.providerWarning}
+                    </p>
+                  )}
+                  <p className="profile-analysis-note">
+                    Berdasarkan {analysisProfile.recentContent.length} konten
+                    terbaru yang dikembalikan provider. Data yang tidak tersedia
+                    tidak diestimasi.
+                  </p>
                 </section>
               )}
               <details className="manual-calculator">
@@ -1816,12 +1854,24 @@ function App() {
           {page === "Import" && (
             <ProfileImport
               onClose={() => {
-                setPage("Influencers");
+                setPage(analyzeOnly ? "Calculator" : "Influencers");
                 setRefreshTarget(null);
+                setAnalyzeOnly(false);
               }}
               onSave={saveImportedProfile}
+              onAnalyze={
+                analyzeOnly
+                  ? (profile) => {
+                      setAnalysisProfile(profile);
+                      setAnalysisQuery(profile.profileUrl);
+                      setPage("Calculator");
+                      setAnalyzeOnly(false);
+                    }
+                  : undefined
+              }
               onManual={() => {
                 setPage("Influencers");
+                setAnalyzeOnly(false);
                 setModal("influencer");
               }}
               initialUrl={refreshUrl}
@@ -1887,14 +1937,16 @@ function App() {
               </div>
             </>
           )}
-          <footer className="footer">
+        </div>
+        <footer className="footer-shell">
+          <div className="footer">
             <span>© 2026 Noor Creative</span>
             <span>
               Made for better partnerships{" "}
               <span className="footer-spark">✳</span>
             </span>
-          </footer>
-        </div>
+          </div>
+        </footer>
       </main>
       {modal && (
         <div
@@ -2046,6 +2098,40 @@ function App() {
               </div>
             </form>
           </div>
+        </div>
+      )}
+      {accountProfileOpen && (
+        <div
+          className="modal-backdrop"
+          onMouseDown={(event) =>
+            event.target === event.currentTarget && setAccountProfileOpen(false)
+          }
+        >
+          <section className="modal account-profile-modal" aria-labelledby="account-profile-title">
+            <div className="modal-head">
+              <div>
+                <div className="eyebrow">YOUR ACCOUNT</div>
+                <h2 id="account-profile-title">My Profile</h2>
+              </div>
+              <button
+                className="icon-button"
+                aria-label="Close profile"
+                onClick={() => setAccountProfileOpen(false)}
+              >
+                <X size={18} />
+              </button>
+            </div>
+            <div className="account-profile-details">
+              <div className="top-avatar">
+                {user.email?.slice(0, 1).toUpperCase() || "A"}
+              </div>
+              <div>
+                <b>{user.email?.split("@")[0] || "Account"}</b>
+                <span>{user.email}</span>
+              </div>
+            </div>
+            <p className="account-profile-note">Your account is managed securely with Supabase.</p>
+          </section>
         </div>
       )}
       {selected && (

@@ -191,7 +191,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const client = useMemo(
     () =>
       supabaseUrl && supabaseAnonKey
-        ? createClient(supabaseUrl, supabaseAnonKey)
+        ? createClient(supabaseUrl, supabaseAnonKey, {
+            auth: {
+              autoRefreshToken: true,
+              detectSessionInUrl: true,
+              persistSession: true,
+              storage: window.localStorage,
+            },
+          })
         : null,
     [],
   );
@@ -202,19 +209,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (!client) return;
 
     let active = true;
+    let authEventRevision = 0;
     const {
       data: { subscription },
     } = client.auth.onAuthStateChange((_event, nextSession) => {
+      authEventRevision += 1;
       setSession(nextSession);
       setLoading(false);
     });
 
-    client.auth.getSession().then(({ data, error: sessionError }) => {
-      if (!active) return;
-      if (sessionError) setSession(null);
-      else setSession(data.session);
-      setLoading(false);
-    });
+    const revisionBeforeRestore = authEventRevision;
+    client.auth
+      .getSession()
+      .then(({ data, error: sessionError }) => {
+        if (!active || authEventRevision !== revisionBeforeRestore) return;
+        setSession(sessionError ? null : data.session);
+        setLoading(false);
+      })
+      .catch(() => {
+        if (!active || authEventRevision !== revisionBeforeRestore) return;
+        setSession(null);
+        setLoading(false);
+      });
 
     return () => {
       active = false;
