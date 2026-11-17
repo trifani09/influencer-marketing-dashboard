@@ -34,9 +34,23 @@ const oauthPopupResponse = (res, env, data) => {
     env.APP_ORIGIN || "http://localhost:5173",
   ).replaceAll("<", "\\u003c");
   const payload = JSON.stringify(data).replaceAll("<", "\\u003c");
+  const message =
+    data.type === "creator-profile-import"
+      ? "Profile data received. You can close this window."
+      : data.error?.message ||
+        "Authorization could not be completed. Return to the dashboard and retry.";
+  const visibleMessage = message.replace(/[&<>"']/g, (char) =>
+    ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    })[char],
+  );
   return html(
     res,
-    `<!doctype html><meta charset="utf-8"><title>Social profile authorization</title><p>${data.type === "creator-profile-import" ? "Profile data received. You can close this window." : "Authorization could not be completed. Return to the dashboard and retry."}</p><script>history.replaceState(null,'',location.pathname);if(window.opener){window.opener.postMessage(${payload},${targetOrigin});setTimeout(()=>window.close(),700)}</script>`,
+    `<!doctype html><meta charset="utf-8"><title>Social profile authorization</title><p>${visibleMessage}</p><script>history.replaceState(null,'',location.pathname);if(window.opener){window.opener.postMessage(${payload},${targetOrigin});setTimeout(()=>window.close(),700)}</script>`,
   );
 };
 const addCorsHeaders = (req, res, env) => {
